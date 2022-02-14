@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const colors = require('tailwindcss/colors')
-const palette = require('./palette')
+const palette = require('./src/assets/palette')
 
 module.exports = {
   purge: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
