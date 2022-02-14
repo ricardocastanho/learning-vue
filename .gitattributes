@@ -1,2 +1,4 @@
+special-vendored-path/* linguist-vendored
+
 ./src/assets/palette.js linguist-vendored=false
 ./tailwind.config.js linguist-vendored=false
