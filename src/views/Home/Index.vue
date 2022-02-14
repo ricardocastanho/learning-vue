@@ -9,14 +9,16 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 import HomeContact from './Contact.vue'
 import HomeHeader from './Header.vue'
 
-export default {
+export default defineComponent({
   name: 'HomePage',
   components: {
     HomeHeader,
     HomeContact
   }
-}
+})
 </script>
