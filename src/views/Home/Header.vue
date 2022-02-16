@@ -9,14 +9,14 @@
         <div class="flex">
           <button
             id="header-create-account-button"
-            @click="() => emit('create-account')"
+            @click="openModal"
             class="px-6 py-2 font-bold rounded-full text-white focus:outline-none"
           >
             Crie uma conta
           </button>
           <button
             id="header-login-button"
-            @click="() => emit('login')"
+            @click="openModal"
             class="px-6 py-2 font-bold bg-white rounded-full text-brand-main focus:outline-none"
           >
             Entrar
@@ -36,8 +36,8 @@
         </p>
         <div>
           <button
-            @click="() => emit('create-account')"
             id="cta-create-account-button"
+            @click="openModal"
             class="px-6 py-2 mt-10 font-bold bg-white rounded-full text-brand-main focus:outline-none"
           >
             Crie uma conta grátis
@@ -47,19 +47,37 @@
 
     </div>
   </header>
+
+  <CommonModal>
+    <div>Content</div>
+  </CommonModal>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
+import CommonModal from '@/components/CommonModal.vue'
+import useModal from '@/hooks/useModal'
+
 interface SetupReturn {
-  emit(event: string): void
+  openModal(): void
 }
 
 export default defineComponent({
   name: 'HomePageHeader',
-  setup (_, { emit }): SetupReturn {
-    return { emit }
+  components: {
+    CommonModal
+  },
+  setup (): SetupReturn {
+    const modal = useModal()
+
+    const openModal = () => {
+      modal.open()
+    }
+
+    return {
+      openModal
+    }
   }
 })
 </script>
