@@ -8,19 +8,18 @@
 
         <div class="flex">
           <button
-            id="header-create-account-button"
             @click="openModal"
             class="px-6 py-2 font-bold rounded-full text-white focus:outline-none"
           >
-            Crie uma conta
+            <div>Criar uma conta</div>
           </button>
-          <button
-            id="header-login-button"
-            @click="openModal"
+          <CommonModal
+            text="Entrar"
+            title="Entrar"
             class="px-6 py-2 font-bold bg-white rounded-full text-brand-main focus:outline-none"
           >
-            Entrar
-          </button>
+            <div>Entrar</div>
+          </CommonModal>
         </div>
       </div>
 
@@ -36,7 +35,6 @@
         </p>
         <div>
           <button
-            id="cta-create-account-button"
             @click="openModal"
             class="px-6 py-2 mt-10 font-bold bg-white rounded-full text-brand-main focus:outline-none"
           >
@@ -45,21 +43,25 @@
         </div>
       </div>
 
+      <CommonModal v-model="state.modal">
+        <div>Criar uma conta</div>
+      </CommonModal>
     </div>
   </header>
 
-  <CommonModal>
-    <div>Content</div>
-  </CommonModal>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, reactive } from 'vue'
 
 import CommonModal from '@/components/CommonModal.vue'
-import useModal from '@/hooks/useModal'
+
+interface State {
+  modal: boolean
+}
 
 interface SetupReturn {
+  state: State
   openModal(): void
 }
 
@@ -69,13 +71,16 @@ export default defineComponent({
     CommonModal
   },
   setup (): SetupReturn {
-    const modal = useModal()
+    const state = reactive({
+      modal: false
+    })
 
     const openModal = () => {
-      modal.open()
+      state.modal = true
     }
 
     return {
+      state,
       openModal
     }
   }
