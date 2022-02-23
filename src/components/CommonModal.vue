@@ -10,16 +10,29 @@
   <div
     v-if="isModalOpen"
     class="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50"
-    @click="handleModalToogle(false)"
   >
     <div
       class="fixed mx-10"
       :class="state.width"
-      @click.stop
     >
       <div class="flex flex-col overflow-hidden bg-white rounded-lg animate__animated animate__fadeInDown animate__faster">
         <div class="flex flex-col px-12 py-10 bg-white">
-          <slot />
+          <div class="flex justify-between">
+            <h1 class="text-4xl font-black text-gray-800">
+              {{ title }}
+            </h1>
+
+            <button
+              @click="handleModalToogle(false)"
+              class="text-4xl text-gray-600 focus:outline-none"
+            >
+              &times;
+            </button>
+          </div>
+
+          <div class="mt-16">
+            <slot />
+          </div>
         </div>
       </div>
     </div>
