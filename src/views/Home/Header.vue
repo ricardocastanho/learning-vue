@@ -13,13 +13,10 @@
           >
             <div>Criar uma conta</div>
           </button>
-          <CommonModal
+          <CommonLogin
             text="Entrar"
             title="Entrar"
-            class="px-6 py-2 font-bold bg-white rounded-full text-brand-main focus:outline-none"
-          >
-            <div>Entrar</div>
-          </CommonModal>
+          />
         </div>
       </div>
 
@@ -43,7 +40,10 @@
         </div>
       </div>
 
-      <CommonModal v-model="state.modal">
+      <CommonModal
+        title="Crie sua Conta"
+        v-model="state.modal"
+      >
         <div>Criar uma conta</div>
       </CommonModal>
     </div>
@@ -54,7 +54,8 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 
-import CommonModal from '@/components/CommonModal.vue'
+import CommonModal from '@/components/common/Modal.vue'
+import CommonLogin from '@/components/common/Login.vue'
 
 interface State {
   modal: boolean
@@ -68,7 +69,8 @@ interface SetupReturn {
 export default defineComponent({
   name: 'HomePageHeader',
   components: {
-    CommonModal
+    CommonModal,
+    CommonLogin
   },
   setup (): SetupReturn {
     const state = reactive({
